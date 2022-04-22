@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<style>
+    h3 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 150%;
+    }
+
+    p {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+    }
+</style>
+<h3>Изменения данных о пользователе</h3>
+<hr/>
+<style>
+    label {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 150%;
+    }
+
+    p {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+    }
+</style>
+<form th:method="PATCH" th:action="@{/users/{id} (id=${user.getId()})}" th:object="${user}">
+    <label for="name">Имя: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br>
+    <label for="nickname">Никнейм: </label>
+    <input type="text" th:field="*{nickName}" id="nickName"/>
+    <br>
+    <label for="ladder">Место в рейтинге: </label>
+    <input type="text" th:field="*{ladder}" id="ladder"/>
+    <br>
+    <label for="email">Почта: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br>
+    <hr/>
+    <input type="submit" value="Сохранить"/>
+</form>
+</body>
+</html>

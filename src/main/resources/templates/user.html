@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<style>
+    h3 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 150%;
+    }
+
+    p {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+    }
+</style>
+<h3>Информация о пользователе</h3>
+<hr/>
+<style>
+    div {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 150%;
+    }
+
+    p {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+    }
+</style>
+<div th:text="@{ID: {id} (id=${user.getId()})}"></div>
+<div th:text="@{Имя: {name} (name=${user.getName()})}"></div>
+<div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
+<div th:text="@{Место в рейтинге: {ladder} (ladder=${user.getLadder()})}"></div>
+<div th:text="@{Email: {email} (email=${user.getEmail()})}"></div>
+<h4><a th:href="@{/users/{id}/edit (id=${user.getId()})}">Редактировать</a></h4>
+<form th:method="DELETE" th:action="@{/users/{id} (id=${user.getId()})}" th:object="${user}">
+    <input type="submit" value="Удалить"/>
+</form>
+<br>
+<hr/>
+<style>
+    a {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 150%;
+    }
+
+    p {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11pt;
+    }
+</style>
+<h4><a href="/users">К общему списку</a></h4>
+</body>
+</html>
