@@ -28,6 +28,12 @@ public class User implements GrantedAuthority, UserDetails {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
+
     public User() {
     }
 
