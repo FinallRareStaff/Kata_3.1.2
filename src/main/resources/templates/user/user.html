@@ -5,6 +5,7 @@
     <title>User</title>
 </head>
 <body>
+<header>
 <style>
     h3 {
         font-family: 'Times New Roman', Times, serif;
@@ -16,6 +17,15 @@
         font-size: 11pt;
     }
 </style>
+    <table>
+        <tr>
+            <td th:each="role : ${user.getRoles()}}">
+                <a href="/admin/users" th:if="${role.getName()} == 'ROLE_ADMIN'">На страницу администратора<br></a>
+            </td>
+            <td><a href="/logout">Выход</a></td>
+        </tr>
+    </table>
+</header>
 <h3>Информация о пользователе</h3>
 <hr/>
 <style>
@@ -34,23 +44,12 @@
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
 <div th:text="@{Место в рейтинге: {ladder} (ladder=${user.getLadder()})}"></div>
 <div th:text="@{Email: {email} (email=${user.getEmail()})}"></div>
-<h4><a th:href="@{/users/{id}/edit (id=${user.getId()})}">Редактировать</a></h4>
-<form th:method="DELETE" th:action="@{/users/{id} (id=${user.getId()})}" th:object="${user}">
-    <input type="submit" value="Удалить"/>
-</form>
-<br>
+<div><h5>Роли:</h5>
+    <div th:each="role : %{user.getRoles()}">
+        <span th:if="${role.getName()} == 'ROLE_ADMIN'">Админ</span>
+        <span th:if="${role.getName()} == 'ROLE_USER'">Пользователь</span>
+    </div>
+</div>
 <hr/>
-<style>
-    a {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
-<h4><a href="/users">К общему списку</a></h4>
 </body>
 </html>
