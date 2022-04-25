@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User implements GrantedAuthority, UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,12 @@ public class User implements GrantedAuthority, UserDetails {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
+    @Column(name = "username", nullable = false, length = 50, unique = true)
+    private String username;
+
+    @Column(name = "password", nullable = false, length = 50)
+    private String password;
+
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -43,6 +49,22 @@ public class User implements GrantedAuthority, UserDetails {
         this.nickName = nickName;
         this.ladder = ladder;
         this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     public long getId() {
@@ -108,11 +130,6 @@ public class User implements GrantedAuthority, UserDetails {
                 "\nNickName = " + nickName +
                 "\nLadder = " + ladder +
                 "\nEmail = " + email;
-    }
-
-    @Override
-    public String getAuthority() {
-        return null;
     }
 
     @Override
