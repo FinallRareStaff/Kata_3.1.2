@@ -11,7 +11,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService , UserDetailsService{
+public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
 
@@ -50,9 +50,14 @@ public class UserServiceImpl implements UserService , UserDetailsService{
     }
 
     @Override
+    public User findByUserName(String username) {
+        return userDao.findByUserName(username);
+    }
+
+    @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUserName(username);
+        User user = findByUserName(username);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found" , username));
         }
