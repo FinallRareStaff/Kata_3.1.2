@@ -5,6 +5,10 @@
     <title>New user</title>
 </head>
 <body>
+<header>
+    <a href="/logout">Выйти</a>
+    <hr/>
+</header>
 <style>
     h3 {
         font-family: 'Times New Roman', Times, serif;
@@ -29,9 +33,9 @@
         font-size: 11pt;
     }
 </style>
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/users}" th:object="${user}">
     <label for="name">Имя: </label>
-    <input type="text"  th:field="*{name}" id="name"/>
+    <input type="text" th:field="*{name}" id="name"/>
     <br>
     <label for="nickname">Никнейм: </label>
     <input type="text" th:field="*{nickName}" id="nickname"/>
@@ -42,6 +46,16 @@
     <label for="email">Почта: </label>
     <input type="text" th:field="*{email}" id="email"/>
     <br>
+    <label for="username">Логин: </label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <br>
+    <label for="password">Пароль: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br>
+    <select th:field="*{roles}" multiple>
+        <option th:value="'ROLE_USER'" th:text="USER"></option>
+        <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>
+    </select>
     <hr/>
     <input type="submit" value="Добавить пользователя"/>
 </form>

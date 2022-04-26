@@ -5,6 +5,10 @@
     <title>User</title>
 </head>
 <body>
+<header>
+    <a href="/logout">Выйти</a>
+    <hr/>
+</header>
 <style>
     h3 {
         font-family: 'Times New Roman', Times, serif;
@@ -34,12 +38,8 @@
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
 <div th:text="@{Место в рейтинге: {ladder} (ladder=${user.getLadder()})}"></div>
 <div th:text="@{Email: {email} (email=${user.getEmail()})}"></div>
-<div><h5>Роли:</h5>
-    <div th:each="role : ${user.getRoles()}}">
-        <span th:if="${role.getValue()} == 'ROLE_ADMIN'">Админ</span>
-        <span th:if="${role.getValue()} == 'ROLE_USER'">Пользователь</span>
-    </div>
-</div>
+<div th:text="@{Логин: {username} (username=${user.getUsername()})}"></div>
+<div th:text="@{Пароль: {password} (password=${user.getPassword()})}"></div>
 <h4><a th:href="@{/admin/users/{id}/edit (id=${user.getId()})}">Редактировать</a></h4>
 <form th:method="DELETE" th:action="@{/admin/users/{id} (id=${user.getId()})}" th:object="${user}">
     <input type="submit" value="Удалить"/>

@@ -5,6 +5,10 @@
     <title>All users</title>
 </head>
 <body>
+<header>
+    <a href="/logout">Выйти</a>
+    <hr/>
+</header>
 <style>
     h3 {
         font-family: 'Times New Roman', Times, serif;
@@ -36,14 +40,16 @@
         <th style="background-color: darkgray">Никнейм</th>
         <th style="background-color: darkgray">Место в рейтинге</th>
         <th style="background-color: darkgray">Почта</th>
+        <th style="background-color: darkgray">Пароль</th>
     </tr>
     <tr th:each="user : ${users}">
         <th style="background-color: silver" th:text="${user.getId()}">id</th>
         <th style="background-color: silver"><a th:text="${user.getName()}"
-                                                th:href="@{/users/{id} (id=${user.getId()})}">name</a></th>
+                                                th:href="@{/admin/users/{id} (id=${user.getId()})}">name</a></th>
         <th style="background-color: silver" th:text="${user.getNickName()}">nickname</th>
         <th style="background-color: silver" th:text="${user.getLadder()}">ladder</th>
         <th style="background-color: silver" th:text="${user.getEmail()}">email</th>
+        <th style="background-color: silver" th:text="${user.getPassword()}">password</th>
     </tr>
 </table>
 <hr/>
@@ -58,6 +64,6 @@
         font-size: 11pt;
     }
 </style>
-<a href="/users/new">Добавить нового пользователя</a>
+<a href="/admin/users/new">Добавить нового пользователя</a>
 </body>
 </html>

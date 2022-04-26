@@ -44,12 +44,6 @@
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
 <div th:text="@{Место в рейтинге: {ladder} (ladder=${user.getLadder()})}"></div>
 <div th:text="@{Email: {email} (email=${user.getEmail()})}"></div>
-<div><h5>Роли:</h5>
-    <div th:each="role : ${user.getRoles()}">
-        <span th:if="${role.getRole()} == 'ROLE_ADMIN'">Админ</span>
-        <span th:if="${role.getRole()} == 'ROLE_USER'">Пользователь</span>
-    </div>
-</div>
 <hr/>
 </body>
 </html>
