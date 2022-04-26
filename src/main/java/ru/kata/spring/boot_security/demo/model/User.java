@@ -31,7 +31,7 @@ public class User implements UserDetails {
     @Column(name = "username", nullable = false, length = 50, unique = true)
     private String username;
 
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -49,14 +49,6 @@ public class User implements UserDetails {
         this.nickName = nickName;
         this.ladder = ladder;
         this.email = email;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Collection<Role> getRoles() {

@@ -34,8 +34,14 @@
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
 <div th:text="@{Место в рейтинге: {ladder} (ladder=${user.getLadder()})}"></div>
 <div th:text="@{Email: {email} (email=${user.getEmail()})}"></div>
-<h4><a th:href="@{/users/{id}/edit (id=${user.getId()})}">Редактировать</a></h4>
-<form th:method="DELETE" th:action="@{/users/{id} (id=${user.getId()})}" th:object="${user}">
+<div><h5>Роли:</h5>
+    <div th:each="role : ${user.getRoles()}}">
+        <span th:if="${role.getValue()} == 'ROLE_ADMIN'">Админ</span>
+        <span th:if="${role.getValue()} == 'ROLE_USER'">Пользователь</span>
+    </div>
+</div>
+<h4><a th:href="@{/admin/users/{id}/edit (id=${user.getId()})}">Редактировать</a></h4>
+<form th:method="DELETE" th:action="@{/admin/users/{id} (id=${user.getId()})}" th:object="${user}">
     <input type="submit" value="Удалить"/>
 </form>
 <br>
@@ -51,6 +57,6 @@
         font-size: 11pt;
     }
 </style>
-<h4><a href="/users">К общему списку</a></h4>
+<h4><a href="/admin/users">К общему списку</a></h4>
 </body>
 </html>
