@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUserName(username);
-        user.getAuthorities().size();
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found" , username));
         }
