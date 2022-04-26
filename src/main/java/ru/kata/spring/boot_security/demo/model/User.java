@@ -2,9 +2,11 @@ package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -43,13 +45,21 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(long id, String name, String nickName, int ladder, String email) {
-        this.id = id;
-        this.name = name;
-        this.nickName = nickName;
-        this.ladder = ladder;
-        this.email = email;
-    }
+//    public User(User user, RoleService roleService) {
+//        id = user.getId();
+//        name = user.getName();
+//        nickName = user.getNickName();
+//        ladder = user.getLadder();
+//        email = user.getEmail();
+//        username = user.getUsername();
+//        password = user.getPassword();
+//        roles = new HashSet<>();
+//        for (Role role : roleService.getAllRoles()) {
+//            if (user.getRoles().contains(role)) {
+//                roles.add(role);
+//            }
+//        }
+//    }
 
     public Collection<Role> getRoles() {
         return roles;
