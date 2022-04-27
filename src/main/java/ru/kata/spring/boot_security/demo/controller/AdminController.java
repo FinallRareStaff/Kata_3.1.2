@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.model.UserSample;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
@@ -36,28 +37,31 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user, Model model) {
+    public String newUser(@ModelAttribute("user") UserSample user, Model model) {
         model.addAttribute("roles", roleService.getAllRoles());
         return "admin/user_new";
     }
 
     @PostMapping()
-    public String createUser(@ModelAttribute("user") User user) {
- //       userService.add(new User(user, roleService));
-        userService.add(user);
+    public String createUser(@ModelAttribute("user") UserSample user) {
+        userService.add(new User(user, roleService));
+//        userService.add(user);
         return "redirect:/admin/users";
     }
 
     @GetMapping("/{id}/edit")
     public String createUser(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("user",
+                new UserSample(userService.getUserById(id)));
         return "admin/user_edit";
     }
 
     @PatchMapping("/{id}")
     public String updateUser(@PathVariable("id") long id,
-                             @ModelAttribute("user") User user) {
-        userService.update(id, user);
+                             @ModelAttribute("user") UserSample user) {
+        User eUser = userService.getUserById(id);
+        eUser.update(user, roleService);
+        userService.update(id, eUser);
         return "redirect:/admin/users";
     }
 

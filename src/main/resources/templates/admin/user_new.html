@@ -41,16 +41,16 @@
     <input type="text" th:field="*{nickName}" id="nickname"/>
     <br>
     <label for="ladder">Место в рейтинге: </label>
-    <input type="text" th:field="*{ladder}" id="ladder"/>
+    <input type="number" th:field="*{ladder}" id="ladder"/>
     <br>
     <label for="email">Почта: </label>
-    <input type="text" th:field="*{email}" id="email"/>
+    <input type="email" th:field="*{email}" id="email"/>
     <br>
     <label for="username">Логин: </label>
     <input type="text" th:field="*{username}" id="username"/>
     <br>
     <label for="password">Пароль: </label>
-    <input type="text" th:field="*{password}" id="password"/>
+    <input type="password" th:field="*{password}" id="password"/>
     <br>
     <select th:field="*{roles}" multiple>
         <option th:value="'ROLE_USER'" th:text="USER"></option>

@@ -37,7 +37,7 @@
 <div th:text="@{Имя: {name} (name=${user.getName()})}"></div>
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
 <div th:text="@{Место в рейтинге: {ladder} (ladder=${user.getLadder()})}"></div>
-<div th:text="@{Email: {email} (email=${user.getEmail()})}"></div>
+<div th:text="@{Почта: {email} (email=${user.getEmail()})}"></div>
 <div th:text="@{Логин: {username} (username=${user.getUsername()})}"></div>
 <div th:text="@{Пароль: {password} (password=${user.getPassword()})}"></div>
 <h4><a th:href="@{/admin/users/{id}/edit (id=${user.getId()})}">Редактировать</a></h4>

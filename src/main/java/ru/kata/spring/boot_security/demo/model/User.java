@@ -2,12 +2,14 @@ package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -40,32 +42,50 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    private Set<Role> roles;
 
     public User() {
     }
 
-//    public User(User user, RoleService roleService) {
-//        id = user.getId();
-//        name = user.getName();
-//        nickName = user.getNickName();
-//        ladder = user.getLadder();
-//        email = user.getEmail();
-//        username = user.getUsername();
-//        password = user.getPassword();
-//        roles = new HashSet<>();
-//        for (Role role : roleService.getAllRoles()) {
-//            if (user.getRoles().contains(role)) {
-//                roles.add(role);
-//            }
-//        }
-//    }
+    public User(UserSample userSample, RoleService roleService) {
+        id = userSample.getId();
+        name = userSample.getName();
+        nickName = userSample.getNickName();
+        ladder = userSample.getLadder();
+        email = userSample.getEmail();
+        username = userSample.getUsername();
+        password = userSample.getPassword();
+        roles = new HashSet<>();
+        for (Role role : roleService.getAllRoles()) {
+            if (userSample.getRoles().contains(role)) {
+                roles.add(role);
+            }
+        }
+    }
 
-    public Collection<Role> getRoles() {
+    public void update(UserSample userSample, RoleService roleService) {
+        name = userSample.getName();
+        nickName = userSample.getNickName();
+        ladder = userSample.getLadder();
+        email = userSample.getEmail();
+        username = userSample.getUsername();
+        roles = new HashSet<>();
+        if (!userSample.getPassword().equals("")) {
+            password = userSample.getPassword();
+            password = new BCryptPasswordEncoder().encode(password);
+        }
+        for (Role role : roleService.getAllRoles()) {
+            if (userSample.getRoles().contains(role)) {
+                roles.add(role);
+            }
+        }
+    }
+
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
