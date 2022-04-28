@@ -35,12 +35,13 @@
     <label for="password">Пароль: </label>
     <input type="password" th:field="*{password}" id="password"/>
     <br>
-    <select th:field="*{roles}" multiple>
+    <select th:field="*{roles}" multiple size="1">
         <option th:value="'ROLE_USER'" th:text="USER"></option>
         <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>
     </select>
     <hr/>
     <input type="submit" value="Добавить пользователя"/>
 </form>
+<h4><a href="/admin/users">К общему списку</a></h4>
 </body>
 </html>
