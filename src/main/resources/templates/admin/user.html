@@ -5,34 +5,17 @@
     <title>User</title>
 </head>
 <body>
+<style>
+    a, h3, div {
+        font-size: 150%;
+    }
+</style>
 <header>
     <a href="/logout">Выйти</a>
     <hr/>
 </header>
-<style>
-    h3 {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
 <h3>Информация о пользователе</h3>
 <hr/>
-<style>
-    div {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
 <div th:text="@{ID: {id} (id=${user.getId()})}"></div>
 <div th:text="@{Имя: {name} (name=${user.getName()})}"></div>
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
@@ -46,17 +29,6 @@
 </form>
 <br>
 <hr/>
-<style>
-    a {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
 <h4><a href="/admin/users">К общему списку</a></h4>
 </body>
 </html>

@@ -5,34 +5,17 @@
     <title>Edit user</title>
 </head>
 <body>
+<style>
+    a, h3, h4, label {
+        font-size: 150%;
+    }
+</style>
 <header>
     <a href="/logout">Выйти</a>
     <hr/>
 </header>
-<style>
-    h3 {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
 <h3>Изменения данных о пользователе</h3>
 <hr/>
-<style>
-    label {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
 <form th:method="PATCH" th:action="@{/admin/users/{id} (id=${user.getId()})}" th:object="${user}">
     <label for="name">Имя: </label>
     <input type="text" th:field="*{name}" id="name"/>
@@ -59,5 +42,6 @@
     <hr/>
     <input type="submit" value="Сохранить"/>
 </form>
+<h4><a href="/admin/users/{id}">Назад</a></h4>
 </body>
 </html>

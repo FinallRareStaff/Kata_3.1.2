@@ -5,40 +5,20 @@
     <title>User</title>
 </head>
 <body>
-<header>
 <style>
-    h3 {
-        font-family: 'Times New Roman', Times, serif;
+    a, div, h3{
         font-size: 150%;
     }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
 </style>
+<header>
     <table>
         <tr>
-            <td th:each="role : ${user.getRoles()}">
-                <a href="/admin/users" th:if="${role.getRole()} == 'ROLE_ADMIN'">На страницу администратора<br></a>
-            </td>
             <td><a href="/logout">Выход</a></td>
         </tr>
     </table>
 </header>
 <h3>Информация о пользователе</h3>
 <hr/>
-<style>
-    div {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 150%;
-    }
-
-    p {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 11pt;
-    }
-</style>
 <div th:text="@{ID: {id} (id=${user.getId()})}"></div>
 <div th:text="@{Имя: {name} (name=${user.getName()})}"></div>
 <div th:text="@{Никнейм: {nickname} (nickname=${user.getNickName()})}"></div>
