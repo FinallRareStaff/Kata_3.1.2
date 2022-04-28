@@ -6,7 +6,7 @@
 </head>
 <body>
 <style>
-    a, h3, label {
+    a, h3, label, p {
         font-size: 150%;
     }
 </style>
@@ -35,10 +35,12 @@
     <label for="password">Пароль: </label>
     <input type="password" th:field="*{password}" id="password"/>
     <br>
-    <select th:field="*{roles}" multiple size="1">
-        <option th:value="'ROLE_USER'" th:text="USER"></option>
-        <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>
-    </select>
+    <p>Назначить роль:
+        <select th:field="*{roles}" multiple size="1">
+            <option th:value="'ROLE_USER'" th:text="USER"></option>
+            <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>
+        </select>
+    </p>
     <hr/>
     <input type="submit" value="Добавить пользователя"/>
 </form>
