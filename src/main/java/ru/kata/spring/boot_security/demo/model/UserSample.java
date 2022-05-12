@@ -3,7 +3,6 @@ package ru.kata.spring.boot_security.demo.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
